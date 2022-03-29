@@ -159,119 +159,119 @@ class _DoctorDetailState extends State<DoctorDetail>
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    builder: (BuildContext bc) {
-                                      return SafeArea(
-                                        child: Container(
-                                          child: new Wrap(
-                                            children: <Widget>[
-                                              new ListTile(
-                                                leading: new Icon(
-                                                    Icons.phone_in_talk),
-                                                title: new Text(
-                                                  getTranslated(context, "call").toString(),
-                                                ),
-                                                onTap: () {
-                                                  if (SharedPreferenceHelper
-                                                          .getBoolean(Preferences
-                                                              .is_logged_in) ==
-                                                      true) {
-                                                    Navigator.of(context).pop();
-                                                    launch("tel:$mobileNo");
-                                                  } else {
-                                                    Navigator.of(context).pop();
-                                                    FormHelper.showMessage(
-                                                      context,
-                                                      getTranslated(context, "call").toString(),
-                                                      getTranslated(context, "call_alert").toString(),
-                                                      getTranslated(
-                                                              context, cancel)
-                                                          .toString(),
-                                                      () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      },
-                                                      buttonText2:
-                                                          getTranslated(context,
-                                                                  login)
-                                                              .toString(),
-                                                      isConfirmationDialog:
-                                                          true,
-                                                      onPressed2: () {
-                                                        Navigator.pushNamed(
-                                                            context, 'SignIn');
-                                                      },
-                                                    );
-                                                  }
-                                                },
-                                              ),
-                                              new ListTile(
-                                                leading:
-                                                    new Icon(Icons.videocam),
-                                                title: new Text(
-                                                  getTranslated(context, "videoCall").toString(),
-                                                ),
-                                                onTap: () {
-                                                  setState(
-                                                    () {
-                                                      if (SharedPreferenceHelper
-                                                              .getBoolean(
-                                                                  Preferences
-                                                                      .is_logged_in) ==
-                                                          true) {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        _addVideoOverlay(
-                                                            context);
-                                                      } else {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        FormHelper.showMessage(
-                                                          context,
-                                                            getTranslated(context, "videoCall").toString(),
-                                                            getTranslated(context, "videoCall_alert").toString(),
-                                                          getTranslated(context,
-                                                                  cancel)
-                                                              .toString(),
-                                                          () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                          buttonText2:
-                                                              getTranslated(
-                                                                      context,
-                                                                      login)
-                                                                  .toString(),
-                                                          isConfirmationDialog:
-                                                              true,
-                                                          onPressed2: () {
-                                                            Navigator.pushNamed(
-                                                                context,
-                                                                'SignIn');
-                                                          },
-                                                        );
-                                                      }
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  child: SvgPicture.asset(
-                                    'assets/icons/call.svg',
-                                  ),
-                                ),
-                              ),
+                              // GestureDetector(
+                              //   onTap: () {
+                              //     showModalBottomSheet(
+                              //       context: context,
+                              //       builder: (BuildContext bc) {
+                              //         return SafeArea(
+                              //           child: Container(
+                              //             child: new Wrap(
+                              //               children: <Widget>[
+                              //                 new ListTile(
+                              //                   leading: new Icon(
+                              //                       Icons.phone_in_talk),
+                              //                   title: new Text(
+                              //                     getTranslated(context, "call").toString(),
+                              //                   ),
+                              //                   onTap: () {
+                              //                     if (SharedPreferenceHelper
+                              //                             .getBoolean(Preferences
+                              //                                 .is_logged_in) ==
+                              //                         true) {
+                              //                       Navigator.of(context).pop();
+                              //                       launch("tel:$mobileNo");
+                              //                     } else {
+                              //                       Navigator.of(context).pop();
+                              //                       FormHelper.showMessage(
+                              //                         context,
+                              //                         getTranslated(context, "call").toString(),
+                              //                         getTranslated(context, "call_alert").toString(),
+                              //                         getTranslated(
+                              //                                 context, cancel)
+                              //                             .toString(),
+                              //                         () {
+                              //                           Navigator.of(context)
+                              //                               .pop();
+                              //                         },
+                              //                         buttonText2:
+                              //                             getTranslated(context,
+                              //                                     login)
+                              //                                 .toString(),
+                              //                         isConfirmationDialog:
+                              //                             true,
+                              //                         onPressed2: () {
+                              //                           Navigator.pushNamed(
+                              //                               context, 'SignIn');
+                              //                         },
+                              //                       );
+                              //                     }
+                              //                   },
+                              //                 ),
+                              //                 new ListTile(
+                              //                   leading:
+                              //                       new Icon(Icons.videocam),
+                              //                   title: new Text(
+                              //                     getTranslated(context, "videoCall").toString(),
+                              //                   ),
+                              //                   onTap: () {
+                              //                     setState(
+                              //                       () {
+                              //                         if (SharedPreferenceHelper
+                              //                                 .getBoolean(
+                              //                                     Preferences
+                              //                                         .is_logged_in) ==
+                              //                             true) {
+                              //                           Navigator.of(context)
+                              //                               .pop();
+                              //                           _addVideoOverlay(
+                              //                               context);
+                              //                         } else {
+                              //                           Navigator.of(context)
+                              //                               .pop();
+                              //                           FormHelper.showMessage(
+                              //                             context,
+                              //                               getTranslated(context, "videoCall").toString(),
+                              //                               getTranslated(context, "videoCall_alert").toString(),
+                              //                             getTranslated(context,
+                              //                                     cancel)
+                              //                                 .toString(),
+                              //                             () {
+                              //                               Navigator.of(
+                              //                                       context)
+                              //                                   .pop();
+                              //                             },
+                              //                             buttonText2:
+                              //                                 getTranslated(
+                              //                                         context,
+                              //                                         login)
+                              //                                     .toString(),
+                              //                             isConfirmationDialog:
+                              //                                 true,
+                              //                             onPressed2: () {
+                              //                               Navigator.pushNamed(
+                              //                                   context,
+                              //                                   'SignIn');
+                              //                             },
+                              //                           );
+                              //                         }
+                              //                       },
+                              //                     );
+                              //                   },
+                              //                 ),
+                              //               ],
+                              //             ),
+                              //           ),
+                              //         );
+                              //       },
+                              //     );
+                              //   },
+                              //   child: Container(
+                              //     child: SvgPicture.asset(
+                              //       'assets/icons/call.svg',
+                              //     ),
+                              //   ),
+                              // ),
                               Container(
                                 width: width * 0.3,
                                 height: width * 0.3,

@@ -5,16 +5,23 @@ import 'package:doctro/Myprescription.dart';
 import 'package:doctro/api/Retrofit_Api.dart';
 import 'package:doctro/api/network_api.dart';
 import 'package:doctro/model/appointments_model.dart';
+import 'package:doctro/videocall.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../model/appointments_model.dart';
+import 'VideoCall/overlay_service.dart';
 import 'api/base_model.dart';
 import 'api/server_error.dart';
 import 'const/Palette.dart';
 import 'const/app_string.dart';
+import 'const/prefConstatnt.dart';
+import 'const/preference.dart';
+import 'database/form_helper.dart';
 import 'localization/localization_constant.dart';
 import 'model/cancel_appointment_model.dart';
 import 'model/detail_setting_model.dart';
@@ -38,6 +45,17 @@ class _AppointmentState extends State<Appointment> with SingleTickerProviderStat
   int value = 0;
 
   TabController? _tabController;
+
+
+  _addVideoOverlay(BuildContext contex, int ? id) {
+    OverlayService().addVideosOverlay(
+      context,
+      VideoCall(
+        id: id,
+      ),
+    );
+  }
+
 
   @override
   void initState() {
@@ -603,7 +621,7 @@ class _AppointmentState extends State<Appointment> with SingleTickerProviderStat
                                                           ),
                                                         ),
                                                         Container(
-                                                          width: width * 0.6,
+                                                         // width: width * 0.6,
                                                           child: Column(
                                                             children: [
                                                               Container(
@@ -653,6 +671,127 @@ class _AppointmentState extends State<Appointment> with SingleTickerProviderStat
                                                             ],
                                                           ),
                                                         ),
+
+
+
+                                                        //////// call button starts from here ////////////
+
+
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            showModalBottomSheet(
+                                                              context: context,
+                                                              builder: (BuildContext bc) {
+                                                                return Container(
+                                                                  child: new Wrap(
+                                                                    children: <Widget>[
+                                                                      new ListTile(
+                                                                        leading: new Icon(
+                                                                            Icons.phone_in_talk),
+                                                                        title: new Text(
+                                                                          getTranslated(context, "call").toString(),
+                                                                        ),
+                                                                        onTap: () {
+                                                                          if (SharedPreferenceHelper
+                                                                              .getBoolean(Preferences
+                                                                              .is_logged_in) ==
+                                                                              true) {
+                                                                            Navigator.of(context).pop();
+                                                                            // launch("tel:${upcomingAppointment[index].doctor.hospital.}");
+                                                                            launch("tel:+923026971728");
+                                                                          } else {
+                                                                            Navigator.of(context).pop();
+                                                                            FormHelper.showMessage(
+                                                                              context,
+                                                                              getTranslated(context, "call").toString(),
+                                                                              getTranslated(context, "call_alert").toString(),
+                                                                              getTranslated(
+                                                                                  context, cancel)
+                                                                                  .toString(),
+                                                                                  () {
+                                                                                Navigator.of(context)
+                                                                                    .pop();
+                                                                              },
+                                                                              buttonText2:
+                                                                              getTranslated(context,
+                                                                                  login)
+                                                                                  .toString(),
+                                                                              isConfirmationDialog:
+                                                                              true,
+                                                                              onPressed2: () {
+                                                                                Navigator.pushNamed(
+                                                                                    context, 'SignIn');
+                                                                              },
+                                                                            );
+                                                                          }
+                                                                        },
+                                                                      ),
+                                                                      new ListTile(
+                                                                        leading:
+                                                                        new Icon(Icons.videocam),
+                                                                        title: new Text(
+                                                                          getTranslated(context, "videoCall").toString(),
+                                                                        ),
+                                                                        onTap: () {
+                                                                          setState(
+                                                                                () {
+                                                                              if (SharedPreferenceHelper
+                                                                                  .getBoolean(
+                                                                                  Preferences
+                                                                                      .is_logged_in) ==
+                                                                                  true) {
+                                                                                Navigator.of(context)
+                                                                                    .pop();
+                                                                                _addVideoOverlay(context,upcomingAppointment[index].doctor!.id! );
+                                                                              } else {
+                                                                                Navigator.of(context)
+                                                                                    .pop();
+                                                                                FormHelper.showMessage(
+                                                                                  context,
+                                                                                  getTranslated(context, "videoCall").toString(),
+                                                                                  getTranslated(context, "videoCall_alert").toString(),
+                                                                                  getTranslated(context,
+                                                                                      cancel)
+                                                                                      .toString(),
+                                                                                      () {
+                                                                                    Navigator.of(
+                                                                                        context)
+                                                                                        .pop();
+                                                                                  },
+                                                                                  buttonText2:
+                                                                                  getTranslated(
+                                                                                      context,
+                                                                                      login)
+                                                                                      .toString(),
+                                                                                  isConfirmationDialog:
+                                                                                  true,
+                                                                                  onPressed2: () {
+                                                                                    Navigator.pushNamed(
+                                                                                        context,
+                                                                                        'SignIn');
+                                                                                  },
+                                                                                );
+                                                                              }
+                                                                            },
+                                                                          );
+                                                                        },
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            child: SvgPicture.asset(
+                                                              'assets/icons/call.svg',
+                                                            ),
+                                                          ),
+                                                        ),
+
+
+                                                        //////// call button ends here ////////////
+
                                                         Container(
                                                           child: Column(
                                                             children: [
@@ -741,6 +880,7 @@ class _AppointmentState extends State<Appointment> with SingleTickerProviderStat
                                                             ],
                                                           ),
                                                         ),
+
                                                       ],
                                                     ),
                                                   ),
@@ -827,8 +967,8 @@ class _AppointmentState extends State<Appointment> with SingleTickerProviderStat
                       : Container(
                           height: height * 0.9,
                           child: Center(
-                            child: Text(
-                              getTranslated(context, appointment_appointmentNotAvailable).toString(),
+                            child: Text('hi i am shafqat',
+                             // getTranslated(context, appointment_appointmentNotAvailable).toString(),
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -870,7 +1010,8 @@ class _AppointmentState extends State<Appointment> with SingleTickerProviderStat
                                               doctorImage: pastAppointment[index].doctor!.fullImage,
                                               doctorName: pastAppointment[index].doctor!.name,
                                               doctorTreatmentName: pastAppointment[index].doctor!.treatment!.name,
-                                              doctorAddress: 'Rajkot',
+                                              // doctorAddress: 'Rajkot',
+                                              doctorAddress: pastAppointment[index].doctor!.hospital!.address!,
                                               appointmentDate: pastAppointment[index].date,
                                               appointmentTime: pastAppointment[index].time,
                                               patientName: pastAppointment[index].patientName,
@@ -878,6 +1019,7 @@ class _AppointmentState extends State<Appointment> with SingleTickerProviderStat
                                                   pastAppointment[index].prescription == true ? pastAppointment[index].id : 0,
                                               appointmentId: pastAppointment[index].id,
                                               userRating: pastAppointment[index].rate,
+                                              doctorId: pastAppointment[index].doctorId,
                                             ),
                                           ),
                                         );

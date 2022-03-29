@@ -249,6 +249,7 @@ const String myPrescription_downloadPdf = "myPrescription_downloadPdf";
 const String myPrescription_downloadComplete_toast = "myPrescription_downloadComplete_toast";
 const String myPrescription_note = "myPrescription_note";
 const String myPrescription_noPrescription = "myPrescription_noPrescription";
+const String appointment_rebookAppointment = "appointment_rebookAppointment";
 const String myPrescription_reviewAppointment = "myPrescription_reviewAppointment";
 const String myPrescription_yourRating = "myPrescription_yourRating";
 const String myPrescription_takeMedicine = "myPrescription_takeMedicine";

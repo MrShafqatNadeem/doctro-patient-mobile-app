@@ -18,6 +18,7 @@ import 'api/base_model.dart';
 import 'api/server_error.dart';
 import 'const/Palette.dart';
 import 'const/app_string.dart';
+import 'doctordetail.dart';
 import 'localization/localization_constant.dart';
 import 'model/prescription_model.dart';
 
@@ -32,6 +33,7 @@ class Myprescription extends StatefulWidget {
  final int? appointmentIdPrescription;
  final int? appointmentId;
  final int? userRating;
+ final int? doctorId;
 
   Myprescription({
     this.doctorImage,
@@ -44,6 +46,7 @@ class Myprescription extends StatefulWidget {
     this.appointmentIdPrescription,
     this.appointmentId,
     this.userRating,
+    this.doctorId
   });
 
   @override
@@ -548,6 +551,46 @@ class _MyprescriptionState extends State<Myprescription> {
                                       ),
                                     ),
                                   ),
+
+                            Container(
+                              margin: EdgeInsets.only(top: height * 0.025),
+                              child: Column(
+                                children: [
+                                  Divider(
+                                    height: height * 0.002,
+                                    color: Palette.dark_grey,
+                                    thickness: width * 0.001,
+                                  )
+                                ],
+                              ),
+                            ),
+
+                            Container(
+                              alignment: AlignmentDirectional.center,
+                              child: InkWell(
+                                onTap: (){
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          DoctorDetail(
+                                            id: widget.doctorId,
+                                          ),
+                                    ),
+                                  );
+
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Text(
+                                    getTranslated(context, appointment_rebookAppointment).toString(),
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Palette.dark_blue),
+                                  ),
+                                ),
+                              ),
+                            ),
+
                             Container(
                               margin: EdgeInsets.only(top: height * 0.01),
                               child: Column(
