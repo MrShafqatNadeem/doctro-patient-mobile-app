@@ -271,7 +271,10 @@ class _RestClient implements RestClient {
                 .compose(_dio.options, 'setting',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+
     final value = DetailSetting.fromJson(_result.data!);
+
+    print('got settings --> ${value.toJson()}');
     return value;
   }
 
@@ -622,5 +625,23 @@ class _RestClient implements RestClient {
       }
     }
     return requestOptions;
+  }
+
+  @override
+  Future<bool> AppointmentSurveyAPI(body) async{
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = body;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<VideoCallModel>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'appointment_survey',
+                queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    int value = (_result.statusCode!);
+    if(value == 200){
+      return true;
+    }
+    return false;
   }
 }

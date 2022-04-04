@@ -43,4 +43,5 @@ class Apis {
   static const String  videoCallToken         = "generateAgoraToken";
   static const String  AddVideoCallHistory    = "add_call_history";
   static const String  ShowVideoCallHistory   = "video_call_history";
+  static const String  AppointmentSurvey   = "appointment_survey";
 }

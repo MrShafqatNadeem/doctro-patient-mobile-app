@@ -166,6 +166,10 @@ abstract class RestClient {
 
   @GET(Apis.ShowVideoCallHistory)
   Future<ShowVideoCallHistoryModel> showVideoCallHistoryRequest();
+
+  /////////////////////// shafqat api's from here //////////////////
+  @POST(Apis.AppointmentSurvey)
+  Future<bool> AppointmentSurveyAPI(@Body() body);
 }
 
 
