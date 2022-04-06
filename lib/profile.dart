@@ -51,7 +51,13 @@ class _ProfileState extends State<Profile> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  TextEditingController _name = TextEditingController();
+  TextEditingController _firstNameController = TextEditingController();
+  TextEditingController _lastNameController = TextEditingController();
+  TextEditingController _midNameController = TextEditingController();
+  TextEditingController _cityNameController = TextEditingController();
+  TextEditingController _ageController = TextEditingController();
+  TextEditingController _barangayController = TextEditingController();
+  TextEditingController _civilStatusController = TextEditingController();
   TextEditingController _phoneCode = TextEditingController();
   TextEditingController _phoneNo = TextEditingController();
   TextEditingController _dateOfBirth = TextEditingController();
@@ -178,22 +184,24 @@ class _ProfileState extends State<Profile> {
                       width: width * 0.9,
                       child: Column(
                         children: [
+
+
+                          ////////////// start moification - adding fname, lname, midlenamee ////////////
+
+
+
                           Container(
-                            alignment: AlignmentDirectional.topStart,
-                            child: Text(
-                              getTranslated(context, profile_name).toString(),
-                              style: TextStyle(fontSize: width * 0.04, color: Palette.blue, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            height: height * 0.05,
+                            height: height * 0.10,
                             child: TextFormField(
+
                               textCapitalization: TextCapitalization.sentences,
                               textAlignVertical: TextAlignVertical.bottom,
                               style: TextStyle(fontSize: width * 0.04, color: Palette.dark_blue, fontWeight: FontWeight.bold),
-                              controller: _name,
-                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]'))],
+                              controller: _firstNameController,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z  ]'))],
                               decoration: InputDecoration(
+                                labelText: 'First Name',
+                                labelStyle: TextStyle(fontSize: width * 0.04, color: Palette.blue, fontWeight: FontWeight.bold),
                                 hintText: getTranslated(context, profile_name_hint).toString(),
                                 hintStyle: TextStyle(
                                   fontSize: width * 0.04,
@@ -208,6 +216,181 @@ class _ProfileState extends State<Profile> {
                               },
                             ),
                           ),
+
+                          Container(
+                            height: height * 0.10,
+                            child: TextFormField(
+                              textCapitalization: TextCapitalization.sentences,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              style: TextStyle(fontSize: width * 0.04, color: Palette.dark_blue, fontWeight: FontWeight.bold),
+                              controller: _midNameController,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z  ]'))],
+                              decoration: InputDecoration(
+                                labelText: 'Middle Name',
+                                labelStyle: TextStyle(fontSize: width * 0.04, color: Palette.blue, fontWeight: FontWeight.bold),
+
+                                hintText: 'Enter Middle Name',
+
+                                hintStyle: TextStyle(
+                                  fontSize: width * 0.04,
+                                  color: Palette.dark_grey1,
+                                ),
+                              ),
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
+                                  return getTranslated(context, profile_name_validator).toString();
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+                          Container(
+                            height: height * 0.10,
+                            child: TextFormField(
+                              textCapitalization: TextCapitalization.sentences,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              style: TextStyle(fontSize: width * 0.04, color: Palette.dark_blue, fontWeight: FontWeight.bold),
+                              controller: _lastNameController,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z  ]'))],
+                              decoration: InputDecoration(
+                                labelText: 'Last Name',
+                                labelStyle: TextStyle(fontSize: width * 0.04, color: Palette.blue, fontWeight: FontWeight.bold),
+
+                                hintText: 'Enter Last Name',
+                                // hintText: getTranslated(context, profile_name_hint).toString(),
+                                hintStyle: TextStyle(
+                                  fontSize: width * 0.04,
+                                  color: Palette.dark_grey1,
+                                ),
+                              ),
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
+                                  return getTranslated(context, profile_name_validator).toString();
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+
+                          Container(
+                            height: height * 0.10,
+                            child: TextFormField(
+                              textCapitalization: TextCapitalization.sentences,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              style: TextStyle(fontSize: width * 0.04, color: Palette.dark_blue, fontWeight: FontWeight.bold),
+                              controller: _ageController,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9]'))],
+                              decoration: InputDecoration(
+                                labelText: 'Age',
+                                labelStyle: TextStyle(fontSize: width * 0.04, color: Palette.blue, fontWeight: FontWeight.bold),
+                                hintText: 'Enter Age',
+
+                                // hintText: getTranslated(context, profile_name_hint).toString(),
+                                hintStyle: TextStyle(
+                                  fontSize: width * 0.04,
+                                  color: Palette.dark_grey1,
+                                ),
+                              ),
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
+                                  return getTranslated(context, profile_name_validator).toString();
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+                          Container(
+                            height: height * 0.10,
+                            child: TextFormField(
+                              textCapitalization: TextCapitalization.sentences,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              style: TextStyle(fontSize: width * 0.04, color: Palette.dark_blue, fontWeight: FontWeight.bold),
+                              controller: _civilStatusController,
+                              // inputFormatters: [
+                              //   FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]'))
+                              // ],
+                              decoration: InputDecoration(
+                                labelText: 'Civil Status',
+                                labelStyle: TextStyle(fontSize: width * 0.04, color: Palette.blue, fontWeight: FontWeight.bold),
+
+                                hintText: 'Civil Status',
+                                // hintText: getTranslated(context, profile_name_hint).toString(),
+                                hintStyle: TextStyle(
+                                  fontSize: width * 0.04,
+                                  color: Palette.dark_grey1,
+                                ),
+                              ),
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
+                                  return getTranslated(context, profile_name_validator).toString();
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+
+
+                          Container(
+                            height: height * 0.10,
+                            child: TextFormField(
+                              textCapitalization: TextCapitalization.sentences,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              style: TextStyle(fontSize: width * 0.04, color: Palette.dark_blue, fontWeight: FontWeight.bold),
+                              controller: _cityNameController,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[ a-zA-Z0-9]'))],
+                              decoration: InputDecoration(
+                                labelText: 'City',
+                                labelStyle: TextStyle(fontSize: width * 0.04, color: Palette.blue, fontWeight: FontWeight.bold),
+
+                                hintText: 'Enter City',
+                                // hintText: getTranslated(context, profile_name_hint).toString(),
+                                hintStyle: TextStyle(
+                                  fontSize: width * 0.04,
+                                  color: Palette.dark_grey1,
+                                ),
+                              ),
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
+                                  return getTranslated(context, profile_name_validator).toString();
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+                          Container(
+                            height: height * 0.10,
+                            child: TextFormField(
+                              textCapitalization: TextCapitalization.sentences,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              style: TextStyle(fontSize: width * 0.04, color: Palette.dark_blue, fontWeight: FontWeight.bold),
+                              controller: _barangayController,
+                              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9 ]'))],
+                              decoration: InputDecoration(
+                                labelText: 'Barangay',
+                                labelStyle: TextStyle(fontSize: width * 0.04, color: Palette.blue, fontWeight: FontWeight.bold),
+
+                                // hintText: getTranslated(context, profile_name_hint).toString(),
+                                hintText: 'Enter Barangay',
+                                hintStyle: TextStyle(
+                                  fontSize: width * 0.04,
+                                  color: Palette.dark_grey1,
+                                ),
+                              ),
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
+                                  return getTranslated(context, profile_name_validator).toString();
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+                          //////////////end moification - adding fname, lname, midlenamee ////////////
                           Container(
                             margin: EdgeInsets.only(top: size.height * 0.02),
                             alignment: AlignmentDirectional.topStart,
@@ -415,7 +598,13 @@ class _ProfileState extends State<Profile> {
       response = await RestClient(RetroApi().dioData()).userDetailRequest();
       setState(() {
         loading = false;
-        _name.text = response.name!;
+        _lastNameController.text = response.lastname!;
+        _firstNameController.text = response.firstname!;
+        _midNameController.text = response.midname!;
+        _cityNameController.text = response.city!;
+        _civilStatusController.text = response.civilStatus!;
+        _ageController.text = response.age!;
+        _barangayController.text = response.barangay!;
         _phoneCode.text = response.phoneCode!;
         _phoneNo.text = response.phone!;
         selectDate = response.dob;
@@ -477,7 +666,13 @@ class _ProfileState extends State<Profile> {
     }
     newDateApiPass = DateUtilforpass().formattedDate(DateTime.parse(temp));
     Map<String, dynamic> body = {
-      "name": _name.text,
+      "name": _lastNameController.text,
+      "first_name": _firstNameController.text,
+      "middle_name": _midNameController.text,
+      "city": _cityNameController.text,
+      "age": _ageController.text,
+      "barangay": _barangayController.text,
+      "civil_status": _civilStatusController.text,
       "phone_code": _phoneCode.text,
       "phone": _phoneNo.text,
       "dob": newDateApiPass,
@@ -493,7 +688,7 @@ class _ProfileState extends State<Profile> {
         if (response.success == true) {
           setState(() {
             loading = false;
-            SharedPreferenceHelper.setString(FirestoreConstants.nickname,_name.text);
+            SharedPreferenceHelper.setString(FirestoreConstants.nickname,_lastNameController.text);
             Fluttertoast.showToast(
               msg: '${response.msg}',
               toastLength: Toast.LENGTH_SHORT,

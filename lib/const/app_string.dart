@@ -386,7 +386,9 @@ const String setting_about = "setting_about";
 const String setting_privacyPolicy= "setting_privacyPolicy";
 
 // Profile //
-const String profile_name = "profile_name";
+const String profile_last_name = "profile_name";
+const String profile_first_name = "profile_first_name";
+const String profile_middle_name = "profile_first_name";
 const String profile_name_hint = "profile_name_hint";
 const String profile_name_validator = "profile_name_validator";
 const String profile_phoneNo = "profile_phoneNo";

@@ -4320,7 +4320,7 @@ class _HomeState extends State<Home> {
       response = await RestClient(RetroApi().dioData()).userDetailRequest();
       setState(() {
         loading = false;
-        name = response.name;
+        name = response.lastname;
         email = response.email;
         phoneNo = response.phone;
         image = response.fullImage;

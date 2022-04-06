@@ -43,9 +43,11 @@ class _AppointmentState extends State<Appointment> with SingleTickerProviderStat
   String reason = "";
 
   int? id = 0;
+  String? sessionDuration = '0';
   int value = 0;
 
   TabController? _tabController;
+
 
 
   _addVideoOverlay(BuildContext contex, int ? id) {
@@ -1368,6 +1370,8 @@ _callDoctorFunc(int index){
       response = await RestClient(RetroApi().dioData()).settingRequest();
       loading = false;
       if (response.success == true) {
+        sessionDuration = response.data!.sessionTime!;
+        print('session time duration -->: $sessionDuration');
         var convertCancelReason = json.decode(response.data!.cancelReason!);
         cancelReason.clear();
         for (int i = 0; i < convertCancelReason.length; i++) {

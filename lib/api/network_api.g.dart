@@ -274,7 +274,7 @@ class _RestClient implements RestClient {
 
     final value = DetailSetting.fromJson(_result.data!);
 
-    print('got settings --> ${value.toJson()}');
+    log('got settings --> ${_result.data}');
     return value;
   }
 

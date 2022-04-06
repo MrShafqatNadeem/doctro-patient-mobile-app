@@ -98,6 +98,7 @@ class Data {
   String? favicon;
   String? agoraAppId;
   String? agoraAppCertificate;
+  String? sessionTime;
 
   Data(
       {this.id,
@@ -174,7 +175,10 @@ class Data {
         this.logo,
         this.favicon,
         this.agoraAppId,
-        this.agoraAppCertificate,});
+        this.agoraAppCertificate,
+        this.sessionTime,
+
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -252,6 +256,7 @@ class Data {
     favicon = json['favicon'];
     agoraAppId = json['agora_app_id'];
     agoraAppCertificate = json['agora_app_certificate'];
+    sessionTime = json['session_time'];
   }
 
   Map<String, dynamic> toJson() {
@@ -331,6 +336,7 @@ class Data {
     data['favicon'] = this.favicon;
     data['agora_app_id'] = this.agoraAppId;
     data['agora_app_certificate'] = this.agoraAppCertificate;
+    data['session_time'] = this.sessionTime;
     return data;
   }
 }

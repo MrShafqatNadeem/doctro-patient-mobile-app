@@ -172,7 +172,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
       response = await RestClient(RetroApi().dioData()).userDetailRequest();
       setState(() {
         loading = false;
-        userName = response.name!;
+        userName = response.lastname!;
         userPhoneCode = response.phoneCode!;
         userPhoneNo = response.phone!;
         userDateOfBirth = response.dob;
